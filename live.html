@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content">
+    {% block app_content %}
+    <a href="/" class="btn btn-warning home">На главную</a>
+    <a href="live" class="btn btn-info refresh">Создать новый мир</a>
+    <table class="world">
+        {%for i in game.world%}
+            <tr>
+                {%for j in i%}
+                    {% if j%}
+                        <td class="cell living-cell"></td>
+                    {% else %}
+                        <td class="cell"></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
+</div>
+<div class="counter">{{counter}}</div>
+{% endblock %}
+
+
+
+
+
+{% block scripts %}
+{{ super() }}
+<script>setInterval(() => window.location.reload(), 1000);</script>
+{% endblock %}
